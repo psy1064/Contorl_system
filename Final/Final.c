@@ -1,24 +1,28 @@
 #include <avr/io.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include <avr/interrupt.h> 
 #include <util/delay.h> 
 #include "lcd.h"
 
 
-// 온도 센서 
-#define  Avg_Num   	60         //  이동 평균 갯수 
-#define  Amp_Gain   11         //  증폭기 이득  
-void Display_TMP_LCD( unsigned int tp  )  ;                           // 온도를 10진수 형태로 LCD 에 디스플레이 
-void getTemp();		// 온도 센서 측정
-static volatile unsigned short TMP_sensor_ouput= 0,  TMP_sensor_ouput_avg = 0, TMP_sensor_ouput_avg_C = 0 ; 
+// 온습도 센서
+#define DHT11_PIN PD4
+void Request();
+void Response();
+uint8_t Receive_data();
+void getDHT();
+uint8_t c=0,I_RH,D_RH,I_Temp,D_Temp,CheckSum;
+char i_rh[5], d_rh[5], i_temp[5], d_temp[5];
 
-// LED
+// LCD
 void Display_Number_LCD( unsigned int num, unsigned char digit ) ;    // 부호없는 정수형 변수를 10진수 형태로 LCD 에 디스플레이 
 
 // Blue tooth communication
 void init_serial(void) ;  //  Serial 토신포트 초기화
 void SerialPutChar(char ch);
 void SerialPutString(char str[]);
-void sendTemp(TMP_sensor_ouput_avg_C);
+void sendDHT();
 
 // 범용 
 void HexToDec( unsigned short num, unsigned short radix); 
@@ -34,18 +38,16 @@ static volatile unsigned char cnumber[5] = {0, 0, 0, 0, 0};
 
 int main() 
 {   
-	pin_init();
-	init();
-	init_serial() ;   // Serial Port (USART1) 초기화	 
+	pin_init();		  // Pin 초기화
+	init();			  // Interrupt , Timer, Register 초기화 
+	init_serial() ;   // Serial Port (USART1) 초기화
+		 
 	while (1) 
 	{ 
-
- 	   LcdMove(0,6); 
-       Display_TMP_LCD( TMP_sensor_ouput_avg_C  );  
- 	   LcdMove(1,12); 
-       Display_Number_LCD( TMP_sensor_ouput_avg, 4 ); 
+		
 	}
 } 
+
 
 ISR(TIMER0_OVF_vect)   // Timer0 overflow interrupt( 10 msec)  service routine
 {
@@ -58,57 +60,15 @@ ISR(TIMER0_OVF_vect)   // Timer0 overflow interrupt( 10 msec)  service routine
 
     time_index++ ; 
 	
-
-    if( time_index == 1 )    // 샘플링주기 10msec
+    if( time_index == 500 )    // 샘플링주기 10msec
     {
-	   send_time_index++;
        time_index = 0; 
+	   getDHT();
+	   sendDHT();
 	   
-	   getTemp();
-	   if(send_time_index == 100)
-	   {
-	   	   PORTB ^= 0x10;
-	   	   send_time_index = 0;
-	       sendTemp(TMP_sensor_ouput_avg_C);
-       }
    }
 }
-void sendTemp(TMP_sensor_ouput_avg_C)
-{
-    HexToDec(TMP_sensor_ouput_avg_C,10);   // 수신된 바이트수 TMP_sensor_ouput_avg_C 십진수로 변환
 
-    SerialPutString( "TMP_sensor_ouput_avg_C = " );     //  메시지 전송 
-
-    SerialPutChar( NumToAsc(cnumber[2]));            //  변수 TMP_sensor_ouput_avg_C 값 전송
-    SerialPutChar( NumToAsc(cnumber[1])); 
-    SerialPutChar( NumToAsc(cnumber[0])); 
-    SerialPutChar('\n');                    // 휴대폰으로 데이터 전송시 Line Feed('\n')를 항상 끝에 전송해야함
-}
-void init_serial(void)
-{
-    UCSR1A = 0x00;                    //초기화
-    UCSR1B = 0x18  ;                  //송수신허용,  송수신 인터럽트 금지
-    UCSR1C = 0x06;                    //데이터 전송비트 수 8비트로 설정.
-    
-    UBRR1H = 0x00;
-    UBRR1L = 103;                     //Baud Rate 9600 
-}
-
-void SerialPutChar(char ch)
-{
-	while(!(UCSR1A & (1<<UDRE)));			// 버퍼가 빌 때를 기다림
-  	UDR1 = ch;								// 버퍼에 문자를 쓴다
-} // 한 문자를 송신한다.
-
-void SerialPutString(char *str)
- {
-
-    while(*str != '\0')          // 수신된 문자가 Null 문자( 0x00 )가 아니면 
-    {
-        SerialPutChar(*str++);
-    }
-} // 문자열을 송신한다.
-  // 입력   : str - 송신한 문자열을 저장할 버퍼의 주소
 
 void pin_init()
 {
@@ -121,21 +81,17 @@ void init()
 
 	LcdCommand(ALLCLR);
 	LcdMove(0,0);  
-	LcdPuts("TMP =     C");
+	LcdPuts("HUM=");
 	LcdMove(1,0); 
-	LcdPuts("TMP avg =     ");
- 
-/*****   AD Converter **********/
+	LcdPuts("TMP= ");
 
-	ADMUX &= ~0xE0;    //  ADC 기준전압 = AREF ,   ADC 결과 오른쪽정렬 
-	ADCSRA |= 0x87;     // ADC enable, Prescaler = 128
 
 /**** Timer0 Overflow Interrupt  ******/
-/**************************************/
+
 	TCCR0 = 0x00; 
-    TCNT0 = 256 - 156;       //  내부클럭주기 = 1024/ (16x10^6) = 64 usec,  
-                             //  오버플로인터럽트 주기 = 10msec
-                             //  156 = 10msec/ 64use
+    TCNT0 = 256 - 100;       //  내부클럭주기 = 8/ (16x10^6) = 0.5 usec,  
+                             //  오버플로인터럽트 주기 = 50usec
+                             //  156 = 50usec/ 0.5use
 
 	TIMSK = 0x01;  // Timer0 overflow interrupt enable 
 	sei();         // Global Interrupt Enable 
@@ -143,64 +99,127 @@ void init()
 
 	TCCR0 |= 0x07; // Clock Prescaler N=1024 (Timer 0 Start)
 }
-void getTemp()
+void init_serial(void)
 {
-    static unsigned short  count1 = 0, TMP_Sum = 0; 
-    static unsigned short  TMP_sensor_ouput_buf[Avg_Num ]   ; 
-
-    unsigned char i = 0 ;
-/**************   Temperature Sensor signal detection(AD 변환) ************/
-
-	   ADMUX &= ~0x1F;    //  WADC Chanel 1 : ADC 1 선택
-	   ADMUX |= 0x02;     //  ADC Chanel 1 : ADC 1 선택
-
-	   ADCSRA |= 0x40;    // ADC start 
-
-	   while( ( ADCSRA & 0x10 ) == 0x00  ) ;  // Check if ADC Conversion is completed 
-
-	   ADCSRA |= 0x10;						  // ADIF 플래그 비트 리셋
-
-	   TMP_sensor_ouput = ADC;                // ADC Conversion 이 완료되었으면 ADC 결과 저장 
- 
-     /******************************************************/ 
-
-     ////////////////////////////////////////////////////////////////////
-     //////////                                               /////////// 
-     //////////  Avg_Num(60개) 개씩 이동 평균(Moving Average)  ///////////
-     //////////                                               ///////////
-     ////////////////////////////////////////////////////////////////////
-
-	   if( count1 <= ( Avg_Num -1 ) )
-	   {
-             TMP_sensor_ouput_buf[ count1 ] = TMP_sensor_ouput ;
-			 TMP_Sum +=  TMP_sensor_ouput_buf[ count1 ] ; 
-	         count1++ ; 
-	   } 
-	   else
-	   {
-             TMP_Sum +=  TMP_sensor_ouput  ;	       // 가장 최근 값 더하고  
-             TMP_Sum -=  TMP_sensor_ouput_buf[ 0 ] ;   // 가장 오랜된 값 빼고 
-
-             TMP_sensor_ouput_avg = TMP_Sum / Avg_Num ;     // 4개 이동 평균 
-
-             //  섭씨온도 계산 : 증폭기(증폭기 이득 = Amp_Gain ) 사용했을때 
-             // TMP_sensor_ouput_avg_C =   ( unsigned short) ( (unsigned long) 1250 * TMP_sensor_ouput_avg  / (256 * Amp_Gain)  )  ;    // 온도 계산 [C] 단위
-
-             // 섭씨온도 계산 : 증폭기 사용하지 않았을때  
-               TMP_sensor_ouput_avg_C =   ( unsigned short) ( (unsigned long) 1250 * TMP_sensor_ouput_avg  / 256  )  ;           // 온도 계산 [C] 단위
-
-
-             for( i = 0; i <= (Avg_Num - 2) ; i++ )
-			 {
-                 TMP_sensor_ouput_buf[ i ]  = TMP_sensor_ouput_buf[ i+1 ] ;
-			 } 
-
-             TMP_sensor_ouput_buf[ Avg_Num - 1 ]  = TMP_sensor_ouput ;  
-
-	   }
-
-       //////////////////////////////////////////////////////////////////
+    UCSR0A = 0x00;                    //초기화
+    UCSR0B = 0x18  ;                  //송수신허용,  송수신 인터럽트 금지
+    UCSR0C = 0x06;                    //데이터 전송비트 수 8비트로 설정.
+    
+    UBRR0H = 0x00;
+    UBRR0L = 103;                     //Baud Rate 9600 
 }
+void getDHT()
+{
+
+	Request();		/* send start pulse */
+	Response();		/* receive response */
+	I_RH=Receive_data();	/* store first eight bit in I_RH */
+	D_RH=Receive_data();	/* store next eight bit in D_RH */
+	I_Temp=Receive_data();	/* store next eight bit in I_Temp */
+	D_Temp=Receive_data();	/* store next eight bit in D_Temp */
+	CheckSum=Receive_data();/* store next eight bit in CheckSum */
+	
+	if ((I_RH + D_RH + I_Temp + D_Temp) != CheckSum)
+	{
+		LcdMove(0,0);
+		LcdPuts("Error");
+	}
+		
+	else
+	{	
+		itoa(I_RH,i_rh,10);
+		LcdMove(0,4);
+		LcdPuts(i_rh);
+		LcdMove(0,6);
+		LcdPuts(".");
+			
+		itoa(D_RH,d_rh,10);
+		LcdMove(0,7);
+		LcdPuts(d_rh);
+		LcdMove(0,8);
+		LcdPuts("%");
+		itoa(I_Temp,i_temp,10);
+		LcdMove(1,4);
+		LcdPuts(i_temp);
+		LcdMove(1,6);
+		LcdPuts(".");
+			
+		itoa(D_Temp,d_temp,10);
+		LcdMove(1,7);
+		LcdPuts(d_temp);
+		LcdMove(1,8);
+		LcdPuts("C");
+		
+	}
+				
+	_delay_ms(10);
+}
+void sendDHT()
+{
+	SerialPutString(i_temp);
+	SerialPutChar('.');
+	SerialPutString(d_temp);
+	SerialPutChar(',');
+	SerialPutString(i_rh);
+	SerialPutChar('.');
+	SerialPutString(d_rh);
+	//SerialPutChar('\n');
+}
+void Request()				/* Microcontroller send start pulse/request */
+{
+	DDRD |= (1<<DHT11_PIN);
+	PORTD &= ~(1<<DHT11_PIN);	/* set to low pin */
+	_delay_ms(20);			/* wait for 20ms */
+	PORTD |= (1<<DHT11_PIN);	/* set to high pin */
+	_delay_us(40);
+}
+
+void Response()				/* receive response from DHT11 */
+{
+	DDRD &= ~(1<<DHT11_PIN);
+	while(PIND & (1<<DHT11_PIN));
+	while((PIND & (1<<DHT11_PIN))==0);
+	while(PIND & (1<<DHT11_PIN));
+}
+
+uint8_t Receive_data()			/* receive data */
+{	
+	for (int q=0; q<8; q++)
+	{
+		while((PIND & (1<<DHT11_PIN)) == 0);  /* check received bit 0 or 1 */
+		_delay_us(30);
+		if(PIND & (1<<DHT11_PIN)) /* if high pulse is greater than 30ms */
+		{
+			c = (c<<1)|(0x01);	/* then its logic HIGH */
+		}
+		else			/* otherwise its logic LOW */
+		{
+			c = (c<<1);
+		}
+
+		while(PIND & (1<<DHT11_PIN));
+		
+	}
+	return c;
+}
+
+void SerialPutChar(char ch)
+{
+	while(!(UCSR0A & (1<<UDRE)));			// 버퍼가 빌 때를 기다림
+  	UDR0 = ch;								// 버퍼에 문자를 쓴다
+} // 한 문자를 송신한다.
+
+void SerialPutString(char *str)
+ {
+
+    while(*str != '\0')          // 수신된 문자가 Null 문자( 0x00 )가 아니면 
+    {
+        SerialPutChar(*str++);
+    }
+} // 문자열을 송신한다.
+  // 입력   : str - 송신한 문자열을 저장할 버퍼의 주소
+
+
 void Display_Number_LCD( unsigned int num, unsigned char digit )       // 부호없는 정수형 변수를 10진수 형태로 LCD 에 디스플레이 
 {
 
@@ -227,7 +246,6 @@ void Display_TMP_LCD( unsigned int tp  )       // 온도를 10진수 형태로 LCD 에 디
 
 	HexToDec( tp, 10); //10진수로 변환 
 
- 
     LcdPutchar(NumToAsc(cnumber[2]) );   // 10자리 디스플레이
 	
     LcdPutchar(NumToAsc(cnumber[1]));    // 1자리 디스플레이 
@@ -235,9 +253,6 @@ void Display_TMP_LCD( unsigned int tp  )       // 온도를 10진수 형태로 LCD 에 디
     LcdPuts( ".");                       // 소숫점(.) 디스플레이 
 
     LcdPutchar(NumToAsc(cnumber[0]));    // 0.1 자리 디스플레이 
-
- 
-
 }
 
 
