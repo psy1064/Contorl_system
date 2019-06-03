@@ -1,0 +1,1378 @@
+
+RC_Servo_Motor_2-1.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000070  00800100  00000698  0000072c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000698  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          0000000e  00800170  00800170  0000079c  2**0
+                  ALLOC
+  3 .debug_aranges 00000040  00000000  00000000  0000079c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_pubnames 00000113  00000000  00000000  000007dc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000c0b  00000000  00000000  000008ef  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 0000037f  00000000  00000000  000014fa  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000008e9  00000000  00000000  00001879  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000130  00000000  00000000  00002164  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000298  00000000  00000000  00002294  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000435  00000000  00000000  0000252c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000030  00000000  00000000  00002961  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 46 00 	jmp	0x8c	; 0x8c <__ctors_end>
+   4:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+   8:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+   c:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  10:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  14:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  18:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  1c:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  20:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  24:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  28:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  2c:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  30:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  34:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  38:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  3c:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  40:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  44:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  48:	0c 94 10 01 	jmp	0x220	; 0x220 <__vector_18>
+  4c:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  50:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  54:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  58:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  5c:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  60:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  64:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  68:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  6c:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  70:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  74:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  78:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  7c:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  80:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  84:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  88:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+
+0000008c <__ctors_end>:
+  8c:	11 24       	eor	r1, r1
+  8e:	1f be       	out	0x3f, r1	; 63
+  90:	cf ef       	ldi	r28, 0xFF	; 255
+  92:	d0 e1       	ldi	r29, 0x10	; 16
+  94:	de bf       	out	0x3e, r29	; 62
+  96:	cd bf       	out	0x3d, r28	; 61
+
+00000098 <__do_copy_data>:
+  98:	11 e0       	ldi	r17, 0x01	; 1
+  9a:	a0 e0       	ldi	r26, 0x00	; 0
+  9c:	b1 e0       	ldi	r27, 0x01	; 1
+  9e:	e8 e9       	ldi	r30, 0x98	; 152
+  a0:	f6 e0       	ldi	r31, 0x06	; 6
+  a2:	00 e0       	ldi	r16, 0x00	; 0
+  a4:	0b bf       	out	0x3b, r16	; 59
+  a6:	02 c0       	rjmp	.+4      	; 0xac <__do_copy_data+0x14>
+  a8:	07 90       	elpm	r0, Z+
+  aa:	0d 92       	st	X+, r0
+  ac:	a0 37       	cpi	r26, 0x70	; 112
+  ae:	b1 07       	cpc	r27, r17
+  b0:	d9 f7       	brne	.-10     	; 0xa8 <__do_copy_data+0x10>
+
+000000b2 <__do_clear_bss>:
+  b2:	11 e0       	ldi	r17, 0x01	; 1
+  b4:	a0 e7       	ldi	r26, 0x70	; 112
+  b6:	b1 e0       	ldi	r27, 0x01	; 1
+  b8:	01 c0       	rjmp	.+2      	; 0xbc <.do_clear_bss_start>
+
+000000ba <.do_clear_bss_loop>:
+  ba:	1d 92       	st	X+, r1
+
+000000bc <.do_clear_bss_start>:
+  bc:	ae 37       	cpi	r26, 0x7E	; 126
+  be:	b1 07       	cpc	r27, r17
+  c0:	e1 f7       	brne	.-8      	; 0xba <.do_clear_bss_loop>
+  c2:	0e 94 d6 01 	call	0x3ac	; 0x3ac <main>
+  c6:	0c 94 4a 03 	jmp	0x694	; 0x694 <_exit>
+
+000000ca <__bad_interrupt>:
+  ca:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000ce <LcdPutchar>:
+    can be achieved.
+*/
+void
+_delay_loop_1(uint8_t __count)
+{
+	__asm__ volatile (
+  ce:	95 e3       	ldi	r25, 0x35	; 53
+  d0:	29 2f       	mov	r18, r25
+  d2:	2a 95       	dec	r18
+  d4:	f1 f7       	brne	.-4      	; 0xd2 <LcdPutchar+0x4>
+
+static void write_data(char ch)
+{
+	unsigned char temp;
+
+	temp = (ch & 0xF0) | 0x05;
+  d6:	29 2f       	mov	r18, r25
+  d8:	2a 95       	dec	r18
+  da:	f1 f7       	brne	.-4      	; 0xd8 <LcdPutchar+0xa>
+  dc:	29 2f       	mov	r18, r25
+  de:	2a 95       	dec	r18
+  e0:	f1 f7       	brne	.-4      	; 0xde <LcdPutchar+0x10>
+  e2:	29 2f       	mov	r18, r25
+  e4:	2a 95       	dec	r18
+  e6:	f1 f7       	brne	.-4      	; 0xe4 <LcdPutchar+0x16>
+  e8:	9a 95       	dec	r25
+  ea:	f1 f7       	brne	.-4      	; 0xe8 <LcdPutchar+0x1a>
+  ec:	98 2f       	mov	r25, r24
+  ee:	90 7f       	andi	r25, 0xF0	; 240
+  f0:	95 60       	ori	r25, 0x05	; 5
+
+	LCD_PORT = temp;
+  f2:	95 bb       	out	0x15, r25	; 21
+	LCD_PORT = temp & ~0x04;
+  f4:	9b 7f       	andi	r25, 0xFB	; 251
+  f6:	95 bb       	out	0x15, r25	; 21
+
+	temp = (ch<<4) | 0x05;
+  f8:	82 95       	swap	r24
+  fa:	80 7f       	andi	r24, 0xF0	; 240
+  fc:	85 60       	ori	r24, 0x05	; 5
+
+	LCD_PORT = temp;
+  fe:	85 bb       	out	0x15, r24	; 21
+	LCD_PORT = temp & ~0x04;
+ 100:	8b 7f       	andi	r24, 0xFB	; 251
+ 102:	85 bb       	out	0x15, r24	; 21
+
+void LcdPutchar(char ch)
+{
+	checkbusy();
+	write_data(ch);
+}
+ 104:	08 95       	ret
+
+00000106 <LcdPuts>:
+
+void LcdPuts(char* str)
+{
+ 106:	cf 93       	push	r28
+ 108:	df 93       	push	r29
+ 10a:	ec 01       	movw	r28, r24
+ 10c:	03 c0       	rjmp	.+6      	; 0x114 <LcdPuts+0xe>
+   while(*str)
+  {
+   LcdPutchar(*str);
+ 10e:	0e 94 67 00 	call	0xce	; 0xce <LcdPutchar>
+   str++;
+ 112:	21 96       	adiw	r28, 0x01	; 1
+	write_data(ch);
+}
+
+void LcdPuts(char* str)
+{
+   while(*str)
+ 114:	88 81       	ld	r24, Y
+ 116:	88 23       	and	r24, r24
+ 118:	d1 f7       	brne	.-12     	; 0x10e <LcdPuts+0x8>
+  {
+   LcdPutchar(*str);
+   str++;
+  }
+}
+ 11a:	df 91       	pop	r29
+ 11c:	cf 91       	pop	r28
+ 11e:	08 95       	ret
+
+00000120 <write_command>:
+
+static void write_command(char command)
+
+{
+  char temp;
+  temp = (command & 0xF0)|0x04;
+ 120:	98 2f       	mov	r25, r24
+ 122:	90 7f       	andi	r25, 0xF0	; 240
+ 124:	94 60       	ori	r25, 0x04	; 4
+
+LCD_PORT = temp;
+ 126:	95 bb       	out	0x15, r25	; 21
+LCD_PORT = temp & ~0x04;
+ 128:	9b 7f       	andi	r25, 0xFB	; 251
+ 12a:	95 bb       	out	0x15, r25	; 21
+
+temp = (command << 4) | 0x04;
+ 12c:	82 95       	swap	r24
+ 12e:	80 7f       	andi	r24, 0xF0	; 240
+ 130:	84 60       	ori	r24, 0x04	; 4
+
+LCD_PORT = temp;
+ 132:	85 bb       	out	0x15, r24	; 21
+LCD_PORT = temp & ~0x04;
+ 134:	8b 7f       	andi	r24, 0xFB	; 251
+ 136:	85 bb       	out	0x15, r24	; 21
+ 138:	85 e0       	ldi	r24, 0x05	; 5
+ 13a:	8a 95       	dec	r24
+ 13c:	f1 f7       	brne	.-4      	; 0x13a <write_command+0x1a>
+_delay_us(1);
+}
+ 13e:	08 95       	ret
+
+00000140 <LcdCommand>:
+	LcdCommand(ENTMOD);
+
+	LcdCommand(DISP_ON);
+}
+void LcdCommand(char command)
+{
+ 140:	1f 93       	push	r17
+ 142:	18 2f       	mov	r17, r24
+ 144:	85 e3       	ldi	r24, 0x35	; 53
+ 146:	98 2f       	mov	r25, r24
+ 148:	9a 95       	dec	r25
+ 14a:	f1 f7       	brne	.-4      	; 0x148 <LcdCommand+0x8>
+	checkbusy();
+	write_command(command);
+ 14c:	98 2f       	mov	r25, r24
+ 14e:	9a 95       	dec	r25
+ 150:	f1 f7       	brne	.-4      	; 0x14e <LcdCommand+0xe>
+ 152:	98 2f       	mov	r25, r24
+ 154:	9a 95       	dec	r25
+ 156:	f1 f7       	brne	.-4      	; 0x154 <LcdCommand+0x14>
+ 158:	98 2f       	mov	r25, r24
+ 15a:	9a 95       	dec	r25
+ 15c:	f1 f7       	brne	.-4      	; 0x15a <LcdCommand+0x1a>
+ 15e:	8a 95       	dec	r24
+ 160:	f1 f7       	brne	.-4      	; 0x15e <LcdCommand+0x1e>
+ 162:	81 2f       	mov	r24, r17
+ 164:	0e 94 90 00 	call	0x120	; 0x120 <write_command>
+	if(command==ALLCLR || command==HOME)
+ 168:	11 50       	subi	r17, 0x01	; 1
+ 16a:	12 30       	cpi	r17, 0x02	; 2
+ 16c:	20 f4       	brcc	.+8      	; 0x176 <LcdCommand+0x36>
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 16e:	80 e4       	ldi	r24, 0x40	; 64
+ 170:	9f e1       	ldi	r25, 0x1F	; 31
+ 172:	01 97       	sbiw	r24, 0x01	; 1
+ 174:	f1 f7       	brne	.-4      	; 0x172 <LcdCommand+0x32>
+		_delay_ms(2);
+}
+ 176:	1f 91       	pop	r17
+ 178:	08 95       	ret
+
+0000017a <LcdNewchar>:
+  LcdCommand(pos);
+}
+
+
+void LcdNewchar(char ch, char font[])
+{
+ 17a:	0f 93       	push	r16
+ 17c:	1f 93       	push	r17
+ 17e:	cf 93       	push	r28
+ 180:	df 93       	push	r29
+ 182:	8b 01       	movw	r16, r22
+ int i;
+
+ ch <<=3;
+ 184:	88 0f       	add	r24, r24
+ 186:	88 0f       	add	r24, r24
+ 188:	88 0f       	add	r24, r24
+ ch|= 0x40;
+
+ LcdCommand(ch);
+ 18a:	80 64       	ori	r24, 0x40	; 64
+ 18c:	0e 94 a0 00 	call	0x140	; 0x140 <LcdCommand>
+ 190:	c0 e0       	ldi	r28, 0x00	; 0
+ 192:	d0 e0       	ldi	r29, 0x00	; 0
+
+ for(i=0;i<8;i++)
+    LcdPutchar(font[i]);
+ 194:	f8 01       	movw	r30, r16
+ 196:	ec 0f       	add	r30, r28
+ 198:	fd 1f       	adc	r31, r29
+ 19a:	80 81       	ld	r24, Z
+ 19c:	0e 94 67 00 	call	0xce	; 0xce <LcdPutchar>
+ ch <<=3;
+ ch|= 0x40;
+
+ LcdCommand(ch);
+
+ for(i=0;i<8;i++)
+ 1a0:	21 96       	adiw	r28, 0x01	; 1
+ 1a2:	c8 30       	cpi	r28, 0x08	; 8
+ 1a4:	d1 05       	cpc	r29, r1
+ 1a6:	b1 f7       	brne	.-20     	; 0x194 <LcdNewchar+0x1a>
+    LcdPutchar(font[i]);
+}
+ 1a8:	df 91       	pop	r29
+ 1aa:	cf 91       	pop	r28
+ 1ac:	1f 91       	pop	r17
+ 1ae:	0f 91       	pop	r16
+ 1b0:	08 95       	ret
+
+000001b2 <LcdMove>:
+
+{ 
+
+//  pos = (line << 6) + pos; 
+
+	if(line == 0 )       pos = 0x00 + pos ;
+ 1b2:	88 23       	and	r24, r24
+ 1b4:	49 f0       	breq	.+18     	; 0x1c8 <LcdMove+0x16>
+	else if( line == 1 ) pos = 0x40 + pos ;
+ 1b6:	81 30       	cpi	r24, 0x01	; 1
+ 1b8:	11 f4       	brne	.+4      	; 0x1be <LcdMove+0xc>
+ 1ba:	60 5c       	subi	r22, 0xC0	; 192
+ 1bc:	05 c0       	rjmp	.+10     	; 0x1c8 <LcdMove+0x16>
+	else if( line == 2 ) pos = 0x10 + pos ;
+ 1be:	82 30       	cpi	r24, 0x02	; 2
+ 1c0:	11 f4       	brne	.+4      	; 0x1c6 <LcdMove+0x14>
+ 1c2:	60 5f       	subi	r22, 0xF0	; 240
+ 1c4:	01 c0       	rjmp	.+2      	; 0x1c8 <LcdMove+0x16>
+	else                 pos = 0x50 + pos ;
+ 1c6:	60 5b       	subi	r22, 0xB0	; 176
+
+  pos |= 0x80;
+ 
+  LcdCommand(pos);
+ 1c8:	86 2f       	mov	r24, r22
+ 1ca:	80 68       	ori	r24, 0x80	; 128
+ 1cc:	0e 94 a0 00 	call	0x140	; 0x140 <LcdCommand>
+}
+ 1d0:	08 95       	ret
+
+000001d2 <LcdInit>:
+static void write_command(char command);
+static void write_data(char ch);
+
+void LcdInit(void)
+{
+	LCD_DDR = 0xff;
+ 1d2:	8f ef       	ldi	r24, 0xFF	; 255
+ 1d4:	84 bb       	out	0x14, r24	; 20
+ 1d6:	80 e6       	ldi	r24, 0x60	; 96
+ 1d8:	9a ee       	ldi	r25, 0xEA	; 234
+ 1da:	01 97       	sbiw	r24, 0x01	; 1
+ 1dc:	f1 f7       	brne	.-4      	; 0x1da <LcdInit+0x8>
+	_delay_ms(15);
+	write_command(0x30);
+ 1de:	80 e3       	ldi	r24, 0x30	; 48
+ 1e0:	0e 94 90 00 	call	0x120	; 0x120 <write_command>
+ 1e4:	80 e2       	ldi	r24, 0x20	; 32
+ 1e6:	9e e4       	ldi	r25, 0x4E	; 78
+ 1e8:	01 97       	sbiw	r24, 0x01	; 1
+ 1ea:	f1 f7       	brne	.-4      	; 0x1e8 <LcdInit+0x16>
+	_delay_ms(5);
+	write_command(0x30);
+ 1ec:	80 e3       	ldi	r24, 0x30	; 48
+ 1ee:	0e 94 90 00 	call	0x120	; 0x120 <write_command>
+ 1f2:	80 ea       	ldi	r24, 0xA0	; 160
+ 1f4:	9f e0       	ldi	r25, 0x0F	; 15
+ 1f6:	01 97       	sbiw	r24, 0x01	; 1
+ 1f8:	f1 f7       	brne	.-4      	; 0x1f6 <LcdInit+0x24>
+	_delay_ms(1);
+	write_command(0x32);
+ 1fa:	82 e3       	ldi	r24, 0x32	; 50
+ 1fc:	0e 94 90 00 	call	0x120	; 0x120 <write_command>
+
+	LcdCommand(FUNSET);
+ 200:	88 e2       	ldi	r24, 0x28	; 40
+ 202:	0e 94 a0 00 	call	0x140	; 0x140 <LcdCommand>
+	LcdCommand(DISP_OFF);
+ 206:	88 e0       	ldi	r24, 0x08	; 8
+ 208:	0e 94 a0 00 	call	0x140	; 0x140 <LcdCommand>
+	LcdCommand(ALLCLR);
+ 20c:	81 e0       	ldi	r24, 0x01	; 1
+ 20e:	0e 94 a0 00 	call	0x140	; 0x140 <LcdCommand>
+	LcdCommand(ENTMOD);
+ 212:	86 e0       	ldi	r24, 0x06	; 6
+ 214:	0e 94 a0 00 	call	0x140	; 0x140 <LcdCommand>
+
+	LcdCommand(DISP_ON);
+ 218:	8c e0       	ldi	r24, 0x0C	; 12
+ 21a:	0e 94 a0 00 	call	0x140	; 0x140 <LcdCommand>
+}
+ 21e:	08 95       	ret
+
+00000220 <__vector_18>:
+
+
+// UART1 수신 인터럽트 서비스 프로그램
+
+ISR(  USART0_RX_vect )
+{
+ 220:	1f 92       	push	r1
+ 222:	0f 92       	push	r0
+ 224:	0f b6       	in	r0, 0x3f	; 63
+ 226:	0f 92       	push	r0
+ 228:	11 24       	eor	r1, r1
+ 22a:	8f 93       	push	r24
+
+    rdata = UDR0; 
+ 22c:	8c b1       	in	r24, 0x0c	; 12
+ 22e:	80 93 75 01 	sts	0x0175, r24
+ 
+    SerialPutChar( rdata);           // Echo  수신된 데이터를 바로 송신하여 수신된 데이터가 정확한지 확인 
+ 232:	80 91 75 01 	lds	r24, 0x0175
+// 한 문자를 송신한다.
+//======================================
+
+void SerialPutChar(char ch)
+{
+	while(!(UCSR0A & (1<<UDRE)));			// 버퍼가 빌 때를 기다림
+ 236:	5d 9b       	sbis	0x0b, 5	; 11
+ 238:	fe cf       	rjmp	.-4      	; 0x236 <__vector_18+0x16>
+  	UDR0 = ch;								// 버퍼에 문자를 쓴다
+ 23a:	8c b9       	out	0x0c, r24	; 12
+// 한 문자를 송신한다.
+//======================================
+
+void SerialPutChar(char ch)
+{
+	while(!(UCSR0A & (1<<UDRE)));			// 버퍼가 빌 때를 기다림
+ 23c:	5d 9b       	sbis	0x0b, 5	; 11
+ 23e:	fe cf       	rjmp	.-4      	; 0x23c <__vector_18+0x1c>
+  	UDR0 = ch;								// 버퍼에 문자를 쓴다
+ 240:	8a e0       	ldi	r24, 0x0A	; 10
+ 242:	8c b9       	out	0x0c, r24	; 12
+    rdata = UDR0; 
+ 
+    SerialPutChar( rdata);           // Echo  수신된 데이터를 바로 송신하여 수신된 데이터가 정확한지 확인 
+    SerialPutChar('\n');             // 휴대폰으로 데이터 전송시 Line Feed('\n')를 항상 끝에 전송해야함
+
+    recv_cnt++ ;                     // 수신된 데이터 바이트수 저장
+ 244:	80 91 76 01 	lds	r24, 0x0176
+ 248:	8f 5f       	subi	r24, 0xFF	; 255
+ 24a:	80 93 76 01 	sts	0x0176, r24
+
+    new_recv_flag = 1;               // 새 문자(명령) 수신 플래그 Set
+ 24e:	81 e0       	ldi	r24, 0x01	; 1
+ 250:	80 93 77 01 	sts	0x0177, r24
+
+}
+ 254:	8f 91       	pop	r24
+ 256:	0f 90       	pop	r0
+ 258:	0f be       	out	0x3f, r0	; 63
+ 25a:	0f 90       	pop	r0
+ 25c:	1f 90       	pop	r1
+ 25e:	18 95       	reti
+
+00000260 <init_serial>:
+
+// UART1 통신 초기화 프로그램 
+
+void init_serial(void)
+{
+    UCSR0A = 0x00;                    //초기화
+ 260:	1b b8       	out	0x0b, r1	; 11
+    UCSR0B = 0x18  ;                  //송수신허용,  송수신 인터럽트 금지
+ 262:	88 e1       	ldi	r24, 0x18	; 24
+ 264:	8a b9       	out	0x0a, r24	; 10
+    UCSR0C = 0x06;                    //데이터 전송비트 수 8비트로 설정.
+ 266:	86 e0       	ldi	r24, 0x06	; 6
+ 268:	80 93 95 00 	sts	0x0095, r24
+    
+    UBRR0H = 0x00;
+ 26c:	10 92 90 00 	sts	0x0090, r1
+    UBRR0L = 103;                     //Baud Rate 9600 
+ 270:	87 e6       	ldi	r24, 0x67	; 103
+ 272:	89 b9       	out	0x09, r24	; 9
+}
+ 274:	08 95       	ret
+
+00000276 <SerialPutChar>:
+// 한 문자를 송신한다.
+//======================================
+
+void SerialPutChar(char ch)
+{
+	while(!(UCSR0A & (1<<UDRE)));			// 버퍼가 빌 때를 기다림
+ 276:	5d 9b       	sbis	0x0b, 5	; 11
+ 278:	fe cf       	rjmp	.-4      	; 0x276 <SerialPutChar>
+  	UDR0 = ch;								// 버퍼에 문자를 쓴다
+ 27a:	8c b9       	out	0x0c, r24	; 12
+}
+ 27c:	08 95       	ret
+
+0000027e <SerialPutString>:
+// 문자열을 송신한다.
+// 입력   : str - 송신한 문자열을 저장할 버퍼의 주소
+//=============================================
+
+ void SerialPutString(char *str)
+ {
+ 27e:	fc 01       	movw	r30, r24
+ 280:	04 c0       	rjmp	.+8      	; 0x28a <SerialPutString+0xc>
+// 한 문자를 송신한다.
+//======================================
+
+void SerialPutChar(char ch)
+{
+	while(!(UCSR0A & (1<<UDRE)));			// 버퍼가 빌 때를 기다림
+ 282:	5d 9b       	sbis	0x0b, 5	; 11
+ 284:	fe cf       	rjmp	.-4      	; 0x282 <SerialPutString+0x4>
+ {
+
+    while(*str != '\0')         // 수신된 문자가 Null 문자( 0x00 )가 아니면 
+    {
+
+        SerialPutChar(*str++);
+ 286:	31 96       	adiw	r30, 0x01	; 1
+//======================================
+
+void SerialPutChar(char ch)
+{
+	while(!(UCSR0A & (1<<UDRE)));			// 버퍼가 빌 때를 기다림
+  	UDR0 = ch;								// 버퍼에 문자를 쓴다
+ 288:	8c b9       	out	0x0c, r24	; 12
+//=============================================
+
+ void SerialPutString(char *str)
+ {
+
+    while(*str != '\0')         // 수신된 문자가 Null 문자( 0x00 )가 아니면 
+ 28a:	80 81       	ld	r24, Z
+ 28c:	88 23       	and	r24, r24
+ 28e:	c9 f7       	brne	.-14     	; 0x282 <SerialPutString+0x4>
+    {
+
+        SerialPutChar(*str++);
+    }
+}
+ 290:	08 95       	ret
+
+00000292 <Servo_Move>:
+
+
+void Servo_Move( short sv_pos_cmd )
+{
+
+      OCR2 = ( 135 * sv_pos_cmd )/900  + 10  ;  
+ 292:	27 e8       	ldi	r18, 0x87	; 135
+ 294:	30 e0       	ldi	r19, 0x00	; 0
+ 296:	ac 01       	movw	r20, r24
+ 298:	42 9f       	mul	r20, r18
+ 29a:	c0 01       	movw	r24, r0
+ 29c:	43 9f       	mul	r20, r19
+ 29e:	90 0d       	add	r25, r0
+ 2a0:	52 9f       	mul	r21, r18
+ 2a2:	90 0d       	add	r25, r0
+ 2a4:	11 24       	eor	r1, r1
+ 2a6:	64 e8       	ldi	r22, 0x84	; 132
+ 2a8:	73 e0       	ldi	r23, 0x03	; 3
+ 2aa:	0e 94 37 03 	call	0x66e	; 0x66e <__divmodhi4>
+ 2ae:	66 5f       	subi	r22, 0xF6	; 246
+ 2b0:	63 bd       	out	0x23, r22	; 35
+
+      //  펄스폭 = 0.64msec = 64usec * 10,   왼쪽 끝(0 도)  (펄스폭 = 0.66msec )
+      //  펄스폭 = 1.47msec = 64usec * 23 ,  가운데(90 도) (펄스폭 = 1.5msec )
+      //  펄스폭 = 2.37msec = 64usec * 37 ,  오른쪽 끝(180 도) (펄스폭 = 2.45msec ) 
+
+}
+ 2b2:	08 95       	ret
+
+000002b4 <HexToDec>:
+
+}
+
+
+void HexToDec( unsigned short num, unsigned short radix) 
+{
+ 2b4:	0f 93       	push	r16
+ 2b6:	1f 93       	push	r17
+ 2b8:	cf 93       	push	r28
+ 2ba:	df 93       	push	r29
+ 2bc:	9c 01       	movw	r18, r24
+ 2be:	8b 01       	movw	r16, r22
+	int j ;
+
+	for(j=0; j<5 ; j++) cnumber[j] = 0 ;
+ 2c0:	10 92 70 01 	sts	0x0170, r1
+ 2c4:	10 92 71 01 	sts	0x0171, r1
+ 2c8:	10 92 72 01 	sts	0x0172, r1
+ 2cc:	10 92 73 01 	sts	0x0173, r1
+ 2d0:	10 92 74 01 	sts	0x0174, r1
+ 2d4:	c0 e0       	ldi	r28, 0x00	; 0
+ 2d6:	d0 e0       	ldi	r29, 0x00	; 0
+
+	j=0;
+	do
+	{
+		cnumber[j++] = num % radix ; 
+ 2d8:	c9 01       	movw	r24, r18
+ 2da:	b8 01       	movw	r22, r16
+ 2dc:	0e 94 23 03 	call	0x646	; 0x646 <__udivmodhi4>
+ 2e0:	fe 01       	movw	r30, r28
+ 2e2:	e0 59       	subi	r30, 0x90	; 144
+ 2e4:	fe 4f       	sbci	r31, 0xFE	; 254
+ 2e6:	80 83       	st	Z, r24
+ 2e8:	21 96       	adiw	r28, 0x01	; 1
+		num /= radix; 
+ 2ea:	c9 01       	movw	r24, r18
+ 2ec:	b8 01       	movw	r22, r16
+ 2ee:	0e 94 23 03 	call	0x646	; 0x646 <__udivmodhi4>
+ 2f2:	9b 01       	movw	r18, r22
+
+	} while(num);
+ 2f4:	61 15       	cp	r22, r1
+ 2f6:	71 05       	cpc	r23, r1
+ 2f8:	79 f7       	brne	.-34     	; 0x2d8 <HexToDec+0x24>
+
+} 
+ 2fa:	df 91       	pop	r29
+ 2fc:	cf 91       	pop	r28
+ 2fe:	1f 91       	pop	r17
+ 300:	0f 91       	pop	r16
+ 302:	08 95       	ret
+
+00000304 <NumToAsc>:
+
+char NumToAsc( unsigned char Num )
+{
+	if( Num <10 ) Num += 0x30; 
+ 304:	8a 30       	cpi	r24, 0x0A	; 10
+ 306:	10 f4       	brcc	.+4      	; 0x30c <NumToAsc+0x8>
+ 308:	80 5d       	subi	r24, 0xD0	; 208
+ 30a:	08 95       	ret
+	else          Num += 0x37; 
+ 30c:	89 5c       	subi	r24, 0xC9	; 201
+
+	return Num ;
+}
+ 30e:	08 95       	ret
+
+00000310 <msec_delay>:
+ 310:	20 ea       	ldi	r18, 0xA0	; 160
+ 312:	3f e0       	ldi	r19, 0x0F	; 15
+ 314:	04 c0       	rjmp	.+8      	; 0x31e <msec_delay+0xe>
+ 316:	f9 01       	movw	r30, r18
+ 318:	31 97       	sbiw	r30, 0x01	; 1
+ 31a:	f1 f7       	brne	.-4      	; 0x318 <msec_delay+0x8>
+
+
+
+void msec_delay(int n)
+{	
+	for(; n>0; n--)		// 1msec 시간 지연을 n회 반복
+ 31c:	01 97       	sbiw	r24, 0x01	; 1
+ 31e:	18 16       	cp	r1, r24
+ 320:	19 06       	cpc	r1, r25
+ 322:	cc f3       	brlt	.-14     	; 0x316 <msec_delay+0x6>
+		_delay_ms(1);		// 1msec 시간 지연
+}
+ 324:	08 95       	ret
+
+00000326 <Display_Number_LCD>:
+
+
+
+
+void Display_Number_LCD( unsigned int num, unsigned char digit )       // 부호없는 정수형 변수를 10진수 형태로 LCD 에 디스플레이 
+{
+ 326:	1f 93       	push	r17
+ 328:	16 2f       	mov	r17, r22
+
+	HexToDec( num, 10); //10진수로 변환 
+ 32a:	6a e0       	ldi	r22, 0x0A	; 10
+ 32c:	70 e0       	ldi	r23, 0x00	; 0
+ 32e:	0e 94 5a 01 	call	0x2b4	; 0x2b4 <HexToDec>
+
+	if( digit == 0 )     digit = 1 ;
+ 332:	11 23       	and	r17, r17
+ 334:	81 f1       	breq	.+96     	; 0x396 <Display_Number_LCD+0x70>
+	if( digit > 5 )      digit = 5 ;
+ 336:	16 30       	cpi	r17, 0x06	; 6
+ 338:	10 f0       	brcs	.+4      	; 0x33e <Display_Number_LCD+0x18>
+ 33a:	15 e0       	ldi	r17, 0x05	; 5
+ 33c:	02 c0       	rjmp	.+4      	; 0x342 <Display_Number_LCD+0x1c>
+ 
+    if( digit >= 5 )     LcdPutchar( NumToAsc(cnumber[4]) );  // 10000자리 디스플레이
+ 33e:	15 30       	cpi	r17, 0x05	; 5
+ 340:	49 f4       	brne	.+18     	; 0x354 <Display_Number_LCD+0x2e>
+ 342:	80 91 74 01 	lds	r24, 0x0174
+
+} 
+
+char NumToAsc( unsigned char Num )
+{
+	if( Num <10 ) Num += 0x30; 
+ 346:	8a 30       	cpi	r24, 0x0A	; 10
+ 348:	10 f4       	brcc	.+4      	; 0x34e <Display_Number_LCD+0x28>
+ 34a:	80 5d       	subi	r24, 0xD0	; 208
+ 34c:	01 c0       	rjmp	.+2      	; 0x350 <Display_Number_LCD+0x2a>
+	else          Num += 0x37; 
+ 34e:	89 5c       	subi	r24, 0xC9	; 201
+	HexToDec( num, 10); //10진수로 변환 
+
+	if( digit == 0 )     digit = 1 ;
+	if( digit > 5 )      digit = 5 ;
+ 
+    if( digit >= 5 )     LcdPutchar( NumToAsc(cnumber[4]) );  // 10000자리 디스플레이
+ 350:	0e 94 67 00 	call	0xce	; 0xce <LcdPutchar>
+	
+	if( digit >= 4 )     LcdPutchar(NumToAsc(cnumber[3]));    // 1000자리 디스플레이 
+ 354:	14 30       	cpi	r17, 0x04	; 4
+ 356:	48 f0       	brcs	.+18     	; 0x36a <Display_Number_LCD+0x44>
+ 358:	80 91 73 01 	lds	r24, 0x0173
+
+} 
+
+char NumToAsc( unsigned char Num )
+{
+	if( Num <10 ) Num += 0x30; 
+ 35c:	8a 30       	cpi	r24, 0x0A	; 10
+ 35e:	10 f4       	brcc	.+4      	; 0x364 <Display_Number_LCD+0x3e>
+ 360:	80 5d       	subi	r24, 0xD0	; 208
+ 362:	01 c0       	rjmp	.+2      	; 0x366 <Display_Number_LCD+0x40>
+	else          Num += 0x37; 
+ 364:	89 5c       	subi	r24, 0xC9	; 201
+	if( digit == 0 )     digit = 1 ;
+	if( digit > 5 )      digit = 5 ;
+ 
+    if( digit >= 5 )     LcdPutchar( NumToAsc(cnumber[4]) );  // 10000자리 디스플레이
+	
+	if( digit >= 4 )     LcdPutchar(NumToAsc(cnumber[3]));    // 1000자리 디스플레이 
+ 366:	0e 94 67 00 	call	0xce	; 0xce <LcdPutchar>
+
+	if( digit >= 3 )     LcdPutchar(NumToAsc(cnumber[2]));    // 100자리 디스플레이 
+ 36a:	13 30       	cpi	r17, 0x03	; 3
+ 36c:	48 f0       	brcs	.+18     	; 0x380 <Display_Number_LCD+0x5a>
+ 36e:	80 91 72 01 	lds	r24, 0x0172
+
+} 
+
+char NumToAsc( unsigned char Num )
+{
+	if( Num <10 ) Num += 0x30; 
+ 372:	8a 30       	cpi	r24, 0x0A	; 10
+ 374:	10 f4       	brcc	.+4      	; 0x37a <Display_Number_LCD+0x54>
+ 376:	80 5d       	subi	r24, 0xD0	; 208
+ 378:	01 c0       	rjmp	.+2      	; 0x37c <Display_Number_LCD+0x56>
+	else          Num += 0x37; 
+ 37a:	89 5c       	subi	r24, 0xC9	; 201
+ 
+    if( digit >= 5 )     LcdPutchar( NumToAsc(cnumber[4]) );  // 10000자리 디스플레이
+	
+	if( digit >= 4 )     LcdPutchar(NumToAsc(cnumber[3]));    // 1000자리 디스플레이 
+
+	if( digit >= 3 )     LcdPutchar(NumToAsc(cnumber[2]));    // 100자리 디스플레이 
+ 37c:	0e 94 67 00 	call	0xce	; 0xce <LcdPutchar>
+
+	if( digit >= 2 )     LcdPutchar(NumToAsc(cnumber[1]));    // 10자리 디스플레이
+ 380:	11 30       	cpi	r17, 0x01	; 1
+ 382:	49 f0       	breq	.+18     	; 0x396 <Display_Number_LCD+0x70>
+ 384:	80 91 71 01 	lds	r24, 0x0171
+
+} 
+
+char NumToAsc( unsigned char Num )
+{
+	if( Num <10 ) Num += 0x30; 
+ 388:	8a 30       	cpi	r24, 0x0A	; 10
+ 38a:	10 f4       	brcc	.+4      	; 0x390 <Display_Number_LCD+0x6a>
+ 38c:	80 5d       	subi	r24, 0xD0	; 208
+ 38e:	01 c0       	rjmp	.+2      	; 0x392 <Display_Number_LCD+0x6c>
+	else          Num += 0x37; 
+ 390:	89 5c       	subi	r24, 0xC9	; 201
+	
+	if( digit >= 4 )     LcdPutchar(NumToAsc(cnumber[3]));    // 1000자리 디스플레이 
+
+	if( digit >= 3 )     LcdPutchar(NumToAsc(cnumber[2]));    // 100자리 디스플레이 
+
+	if( digit >= 2 )     LcdPutchar(NumToAsc(cnumber[1]));    // 10자리 디스플레이
+ 392:	0e 94 67 00 	call	0xce	; 0xce <LcdPutchar>
+
+	if( digit >= 1 )     LcdPutchar(NumToAsc(cnumber[0]));    //  1자리 디스플레이
+ 396:	80 91 70 01 	lds	r24, 0x0170
+
+} 
+
+char NumToAsc( unsigned char Num )
+{
+	if( Num <10 ) Num += 0x30; 
+ 39a:	8a 30       	cpi	r24, 0x0A	; 10
+ 39c:	10 f4       	brcc	.+4      	; 0x3a2 <Display_Number_LCD+0x7c>
+ 39e:	80 5d       	subi	r24, 0xD0	; 208
+ 3a0:	01 c0       	rjmp	.+2      	; 0x3a4 <Display_Number_LCD+0x7e>
+	else          Num += 0x37; 
+ 3a2:	89 5c       	subi	r24, 0xC9	; 201
+
+	if( digit >= 3 )     LcdPutchar(NumToAsc(cnumber[2]));    // 100자리 디스플레이 
+
+	if( digit >= 2 )     LcdPutchar(NumToAsc(cnumber[1]));    // 10자리 디스플레이
+
+	if( digit >= 1 )     LcdPutchar(NumToAsc(cnumber[0]));    //  1자리 디스플레이
+ 3a4:	0e 94 67 00 	call	0xce	; 0xce <LcdPutchar>
+
+}
+ 3a8:	1f 91       	pop	r17
+ 3aa:	08 95       	ret
+
+000003ac <main>:
+
+static volatile  char  recv_cnt = 0, rdata = 0, new_recv_flag = 0, rdata_old = 0 ; 
+
+
+int main() 
+{   
+ 3ac:	0f 93       	push	r16
+ 3ae:	1f 93       	push	r17
+
+
+	DDRB |= 0x80;    //  PWM 포트: OC2( PB7 ) 출력설정 
+ 3b0:	bf 9a       	sbi	0x17, 7	; 23
+ 
+
+	DDRB |= 0x08;     // 버저(Buzzer) ( PB3 : 출력포트 설정    )
+ 3b2:	bb 9a       	sbi	0x17, 3	; 23
+	PORTB &= ~0x08;   // PB3  : Low  ( 버저 OFF )  
+ 3b4:	c3 98       	cbi	0x18, 3	; 24
+
+	DDRB |= 0x10;     // LED ( PB4 : 출력포트 설정    )
+ 3b6:	bc 9a       	sbi	0x17, 4	; 23
+	PORTB |= 0x10;    // PB4  : High ( LED OFF)    
+ 3b8:	c4 9a       	sbi	0x18, 4	; 24
+
+// UART1 통신 초기화 프로그램 
+
+void init_serial(void)
+{
+    UCSR0A = 0x00;                    //초기화
+ 3ba:	1b b8       	out	0x0b, r1	; 11
+    UCSR0B = 0x18  ;                  //송수신허용,  송수신 인터럽트 금지
+ 3bc:	88 e1       	ldi	r24, 0x18	; 24
+ 3be:	8a b9       	out	0x0a, r24	; 10
+    UCSR0C = 0x06;                    //데이터 전송비트 수 8비트로 설정.
+ 3c0:	86 e0       	ldi	r24, 0x06	; 6
+ 3c2:	80 93 95 00 	sts	0x0095, r24
+    
+    UBRR0H = 0x00;
+ 3c6:	10 92 90 00 	sts	0x0090, r1
+    UBRR0L = 103;                     //Baud Rate 9600 
+ 3ca:	87 e6       	ldi	r24, 0x67	; 103
+ 3cc:	89 b9       	out	0x09, r24	; 9
+	PORTB |= 0x10;    // PB4  : High ( LED OFF)    
+
+
+    init_serial() ;    // Serial Port (USART1) 초기화
+
+    UCSR0B |=  0x80  ;      // UART1 송신(RX) 완료 인터럽트 허용
+ 3ce:	57 9a       	sbi	0x0a, 7	; 10
+	sei() ;                 // 전역인터럽트허용
+ 3d0:	78 94       	sei
+
+
+	LcdInit();    //  LCD 초기화 
+ 3d2:	0e 94 e9 00 	call	0x1d2	; 0x1d2 <LcdInit>
+
+	LcdMove(0,0); 
+ 3d6:	80 e0       	ldi	r24, 0x00	; 0
+ 3d8:	60 e0       	ldi	r22, 0x00	; 0
+ 3da:	0e 94 d9 00 	call	0x1b2	; 0x1b2 <LcdMove>
+	LcdPuts("RC Servo Motor");
+ 3de:	80 e0       	ldi	r24, 0x00	; 0
+ 3e0:	91 e0       	ldi	r25, 0x01	; 1
+ 3e2:	0e 94 83 00 	call	0x106	; 0x106 <LcdPuts>
+	LcdMove(1,0); 
+ 3e6:	81 e0       	ldi	r24, 0x01	; 1
+ 3e8:	60 e0       	ldi	r22, 0x00	; 0
+ 3ea:	0e 94 d9 00 	call	0x1b2	; 0x1b2 <LcdMove>
+	LcdPuts("Servo_Pos = ");
+ 3ee:	8f e0       	ldi	r24, 0x0F	; 15
+ 3f0:	91 e0       	ldi	r25, 0x01	; 1
+ 3f2:	0e 94 83 00 	call	0x106	; 0x106 <LcdPuts>
+ 3f6:	80 ed       	ldi	r24, 0xD0	; 208
+ 3f8:	97 e0       	ldi	r25, 0x07	; 7
+ 3fa:	20 ea       	ldi	r18, 0xA0	; 160
+ 3fc:	3f e0       	ldi	r19, 0x0F	; 15
+ 3fe:	f9 01       	movw	r30, r18
+ 400:	31 97       	sbiw	r30, 0x01	; 1
+ 402:	f1 f7       	brne	.-4      	; 0x400 <main+0x54>
+
+
+
+void msec_delay(int n)
+{	
+	for(; n>0; n--)		// 1msec 시간 지연을 n회 반복
+ 404:	01 97       	sbiw	r24, 0x01	; 1
+ 406:	d9 f7       	brne	.-10     	; 0x3fe <main+0x52>
+    msec_delay(2000); 
+
+
+// PWM 신호  pin: OC2(PB7), Timer2, PWM signal (period= 16.384msec )
+
+	TCCR2 |= 0x68;   //  Trigger signal (OC2)   발생 :  WGM20(bit6)=1,  WGM21(bit3)=1,  COM21(bit5)=1, COM20(bit4)=0 ,  
+ 408:	85 b5       	in	r24, 0x25	; 37
+ 40a:	88 66       	ori	r24, 0x68	; 104
+ 40c:	85 bd       	out	0x25, r24	; 37
+	TCCR2 |= 0x05;   //  1024분주,  내부클럭주기 = 64usec  : CS22(bit2) = 1, CS21(bit1) = 0,  CS20(bit0) = 1 
+ 40e:	85 b5       	in	r24, 0x25	; 37
+ 410:	85 60       	ori	r24, 0x05	; 5
+ 412:	85 bd       	out	0x25, r24	; 37
+
+
+    Servo_Pos_CMD = Pos_center ;                        // 서보모터 중간 위치로 회전하는 명령 설정  
+ 414:	80 91 6c 01 	lds	r24, 0x016C
+ 418:	90 91 6d 01 	lds	r25, 0x016D
+ 41c:	90 93 79 01 	sts	0x0179, r25
+ 420:	80 93 78 01 	sts	0x0178, r24
+    Servo_Move( Servo_Pos_CMD );                        // 주어진 명령대로 서보 모터 회전
+ 424:	80 91 78 01 	lds	r24, 0x0178
+ 428:	90 91 79 01 	lds	r25, 0x0179
+ 42c:	0e 94 49 01 	call	0x292	; 0x292 <Servo_Move>
+
+	LcdMove(1, 12); 
+ 430:	81 e0       	ldi	r24, 0x01	; 1
+ 432:	6c e0       	ldi	r22, 0x0C	; 12
+ 434:	0e 94 d9 00 	call	0x1b2	; 0x1b2 <LcdMove>
+    Display_Number_LCD( Servo_Pos_CMD , 3); 
+ 438:	80 91 78 01 	lds	r24, 0x0178
+ 43c:	90 91 79 01 	lds	r25, 0x0179
+ 440:	63 e0       	ldi	r22, 0x03	; 3
+ 442:	0e 94 93 01 	call	0x326	; 0x326 <Display_Number_LCD>
+				Command_Error_Flag = 1;  
+
+			}
+
+
+		    rdata = 0xFF;
+ 446:	0f ef       	ldi	r16, 0xFF	; 255
+//======================================
+
+void SerialPutChar(char ch)
+{
+	while(!(UCSR0A & (1<<UDRE)));			// 버퍼가 빌 때를 기다림
+  	UDR0 = ch;								// 버퍼에 문자를 쓴다
+ 448:	1a e0       	ldi	r17, 0x0A	; 10
+	 
+	while (1) 
+	{ 
+ 
+
+         if( new_recv_flag == 1 )      // 한 문자 수신완료 시 
+ 44a:	80 91 77 01 	lds	r24, 0x0177
+ 44e:	81 30       	cpi	r24, 0x01	; 1
+ 450:	e1 f7       	brne	.-8      	; 0x44a <main+0x9e>
+		 { 
+
+		    if( Command_Error_Flag == 1 )    // 이전 명령에 오류가 있었으면
+ 452:	80 91 7a 01 	lds	r24, 0x017A
+ 456:	81 30       	cpi	r24, 0x01	; 1
+ 458:	a1 f4       	brne	.+40     	; 0x482 <main+0xd6>
+			{  
+			    Command_Error_Flag = 0 ;     // 이전 Command_Error_Flag 리셋 
+ 45a:	10 92 7a 01 	sts	0x017A, r1
+
+			    LcdCommand( ALLCLR ) ;       // LCD Claear
+ 45e:	0e 94 a0 00 	call	0x140	; 0x140 <LcdCommand>
+ 	            LcdMove(0,0); 
+ 462:	80 e0       	ldi	r24, 0x00	; 0
+ 464:	60 e0       	ldi	r22, 0x00	; 0
+ 466:	0e 94 d9 00 	call	0x1b2	; 0x1b2 <LcdMove>
+	            LcdPuts("RC Servo Motor");
+ 46a:	80 e0       	ldi	r24, 0x00	; 0
+ 46c:	91 e0       	ldi	r25, 0x01	; 1
+ 46e:	0e 94 83 00 	call	0x106	; 0x106 <LcdPuts>
+	            LcdMove(1,0); 
+ 472:	81 e0       	ldi	r24, 0x01	; 1
+ 474:	60 e0       	ldi	r22, 0x00	; 0
+ 476:	0e 94 d9 00 	call	0x1b2	; 0x1b2 <LcdMove>
+	            LcdPuts("Servo_Pos = ");
+ 47a:	8f e0       	ldi	r24, 0x0F	; 15
+ 47c:	91 e0       	ldi	r25, 0x01	; 1
+ 47e:	0e 94 83 00 	call	0x106	; 0x106 <LcdPuts>
+
+            }
+
+		  //////////////  명령어 처리   //////////////
+
+			if( rdata == '0' )          // 문자 0 이 수신되면 
+ 482:	80 91 75 01 	lds	r24, 0x0175
+ 486:	80 33       	cpi	r24, 0x30	; 48
+ 488:	11 f4       	brne	.+4      	; 0x48e <main+0xe2>
+			{
+                PORTB |= 0x10 ;          // LED OFF 
+ 48a:	c4 9a       	sbi	0x18, 4	; 24
+ 48c:	c7 c0       	rjmp	.+398    	; 0x61c <main+0x270>
+			}
+			else if( rdata == '1' )     // 문자 1 이 수신되면
+ 48e:	80 91 75 01 	lds	r24, 0x0175
+ 492:	81 33       	cpi	r24, 0x31	; 49
+ 494:	11 f4       	brne	.+4      	; 0x49a <main+0xee>
+			{
+                PORTB &= ~0x10 ;         // LED ON
+ 496:	c4 98       	cbi	0x18, 4	; 24
+ 498:	c1 c0       	rjmp	.+386    	; 0x61c <main+0x270>
+			}
+
+			else if( rdata == '2' )            // 문자 2 가 수신되면
+ 49a:	80 91 75 01 	lds	r24, 0x0175
+ 49e:	82 33       	cpi	r24, 0x32	; 50
+ 4a0:	c9 f4       	brne	.+50     	; 0x4d4 <main+0x128>
+			{
+		        Servo_Pos_CMD += 10 ;                                         // 서보모터 위치 10 도씩 증가  
+ 4a2:	80 91 78 01 	lds	r24, 0x0178
+ 4a6:	90 91 79 01 	lds	r25, 0x0179
+ 4aa:	0a 96       	adiw	r24, 0x0a	; 10
+ 4ac:	90 93 79 01 	sts	0x0179, r25
+ 4b0:	80 93 78 01 	sts	0x0178, r24
+                if( Servo_Pos_CMD >= Pos_max )   Servo_Pos_CMD = Pos_max ;    // 서보모터 최대 위치 Pos_max = 180 도
+ 4b4:	20 91 78 01 	lds	r18, 0x0178
+ 4b8:	30 91 79 01 	lds	r19, 0x0179
+ 4bc:	80 91 6e 01 	lds	r24, 0x016E
+ 4c0:	90 91 6f 01 	lds	r25, 0x016F
+ 4c4:	28 17       	cp	r18, r24
+ 4c6:	39 07       	cpc	r19, r25
+ 4c8:	2c f1       	brlt	.+74     	; 0x514 <main+0x168>
+ 4ca:	80 91 6e 01 	lds	r24, 0x016E
+ 4ce:	90 91 6f 01 	lds	r25, 0x016F
+ 4d2:	1c c0       	rjmp	.+56     	; 0x50c <main+0x160>
+		        Servo_Move( Servo_Pos_CMD );                                  // 주어진 명령대로 서보 모터 회전  
+ 
+				rdata_old = rdata ; 
+			}
+
+			else if( rdata == '3' )            // 문자 3 이 수신되면
+ 4d4:	80 91 75 01 	lds	r24, 0x0175
+ 4d8:	83 33       	cpi	r24, 0x33	; 51
+ 4da:	39 f5       	brne	.+78     	; 0x52a <main+0x17e>
+			{
+		        Servo_Pos_CMD -= 10 ;                                        // 서보모터 위치 10 도씩 증가  
+ 4dc:	80 91 78 01 	lds	r24, 0x0178
+ 4e0:	90 91 79 01 	lds	r25, 0x0179
+ 4e4:	0a 97       	sbiw	r24, 0x0a	; 10
+ 4e6:	90 93 79 01 	sts	0x0179, r25
+ 4ea:	80 93 78 01 	sts	0x0178, r24
+                if( Servo_Pos_CMD < Pos_min )   Servo_Pos_CMD = Pos_min ;    // 서보모터 최소 위치 Pos_min = 0 도
+ 4ee:	20 91 78 01 	lds	r18, 0x0178
+ 4f2:	30 91 79 01 	lds	r19, 0x0179
+ 4f6:	80 91 7c 01 	lds	r24, 0x017C
+ 4fa:	90 91 7d 01 	lds	r25, 0x017D
+ 4fe:	28 17       	cp	r18, r24
+ 500:	39 07       	cpc	r19, r25
+ 502:	44 f4       	brge	.+16     	; 0x514 <main+0x168>
+ 504:	80 91 7c 01 	lds	r24, 0x017C
+ 508:	90 91 7d 01 	lds	r25, 0x017D
+ 50c:	90 93 79 01 	sts	0x0179, r25
+ 510:	80 93 78 01 	sts	0x0178, r24
+		        Servo_Move( Servo_Pos_CMD );                                 // 주어진 명령대로 서보 모터 회전  
+ 514:	80 91 78 01 	lds	r24, 0x0178
+ 518:	90 91 79 01 	lds	r25, 0x0179
+ 51c:	0e 94 49 01 	call	0x292	; 0x292 <Servo_Move>
+ 
+				rdata_old = rdata ; 
+ 520:	80 91 75 01 	lds	r24, 0x0175
+ 524:	80 93 7b 01 	sts	0x017B, r24
+ 528:	79 c0       	rjmp	.+242    	; 0x61c <main+0x270>
+			}
+
+			else if( rdata == '4' )            // 문자 4 가 수신되면
+ 52a:	80 91 75 01 	lds	r24, 0x0175
+ 52e:	84 33       	cpi	r24, 0x34	; 52
+ 530:	29 f4       	brne	.+10     	; 0x53c <main+0x190>
+			{
+                Servo_Pos_CMD = Pos_max ;
+ 532:	80 91 6e 01 	lds	r24, 0x016E
+ 536:	90 91 6f 01 	lds	r25, 0x016F
+ 53a:	08 c0       	rjmp	.+16     	; 0x54c <main+0x1a0>
+ 		        Servo_Move( Servo_Pos_CMD );                // 서보모터 최대 위치 Pos_max = 180 도로 서보 모터 회전  
+										 
+			}
+
+			else if( rdata == '5' )            // 문자 5 가 수신되면
+ 53c:	80 91 75 01 	lds	r24, 0x0175
+ 540:	85 33       	cpi	r24, 0x35	; 53
+ 542:	79 f4       	brne	.+30     	; 0x562 <main+0x1b6>
+			{
+
+                Servo_Pos_CMD = Pos_center ;
+ 544:	80 91 6c 01 	lds	r24, 0x016C
+ 548:	90 91 6d 01 	lds	r25, 0x016D
+ 54c:	90 93 79 01 	sts	0x0179, r25
+ 550:	80 93 78 01 	sts	0x0178, r24
+ 		        Servo_Move( Servo_Pos_CMD );               // 서보모터 가운데 위치 Pos_center = 90 도로 서보 모터 회전  
+ 554:	80 91 78 01 	lds	r24, 0x0178
+ 558:	90 91 79 01 	lds	r25, 0x0179
+ 55c:	0e 94 49 01 	call	0x292	; 0x292 <Servo_Move>
+ 560:	5d c0       	rjmp	.+186    	; 0x61c <main+0x270>
+										 
+			}
+
+			else if( rdata == '6' )            // 문자 6 이 수신되면
+ 562:	80 91 75 01 	lds	r24, 0x0175
+ 566:	86 33       	cpi	r24, 0x36	; 54
+ 568:	29 f4       	brne	.+10     	; 0x574 <main+0x1c8>
+			{
+                Servo_Pos_CMD = Pos_min ;
+ 56a:	80 91 7c 01 	lds	r24, 0x017C
+ 56e:	90 91 7d 01 	lds	r25, 0x017D
+ 572:	ec cf       	rjmp	.-40     	; 0x54c <main+0x1a0>
+ 		        Servo_Move( Servo_Pos_CMD );               // 서보모터 최소 위치 Pos_min = 0 도로 서보 모터 회전  
+										 
+			}
+
+
+			else if( rdata == '7')      // 문자 7 이 수신되면
+ 574:	80 91 75 01 	lds	r24, 0x0175
+ 578:	87 33       	cpi	r24, 0x37	; 55
+ 57a:	91 f5       	brne	.+100    	; 0x5e0 <main+0x234>
+			{
+
+		        HexToDec( Servo_Pos_CMD,10);   // 서보 위치(명령) Servo_Pos_CMD 십진수로 변환
+ 57c:	80 91 78 01 	lds	r24, 0x0178
+ 580:	90 91 79 01 	lds	r25, 0x0179
+ 584:	6a e0       	ldi	r22, 0x0A	; 10
+ 586:	70 e0       	ldi	r23, 0x00	; 0
+ 588:	0e 94 5a 01 	call	0x2b4	; 0x2b4 <HexToDec>
+
+                SerialPutString( "Servo Moror Position = " );   //  메시지 전송 
+ 58c:	8c e1       	ldi	r24, 0x1C	; 28
+ 58e:	91 e0       	ldi	r25, 0x01	; 1
+ 590:	0e 94 3f 01 	call	0x27e	; 0x27e <SerialPutString>
+
+                SerialPutChar( NumToAsc(cnumber[2]));           //  변수 Servo_Pos_CMD 값 전송
+ 594:	80 91 72 01 	lds	r24, 0x0172
+
+} 
+
+char NumToAsc( unsigned char Num )
+{
+	if( Num <10 ) Num += 0x30; 
+ 598:	8a 30       	cpi	r24, 0x0A	; 10
+ 59a:	10 f4       	brcc	.+4      	; 0x5a0 <main+0x1f4>
+ 59c:	80 5d       	subi	r24, 0xD0	; 208
+ 59e:	01 c0       	rjmp	.+2      	; 0x5a2 <main+0x1f6>
+	else          Num += 0x37; 
+ 5a0:	89 5c       	subi	r24, 0xC9	; 201
+// 한 문자를 송신한다.
+//======================================
+
+void SerialPutChar(char ch)
+{
+	while(!(UCSR0A & (1<<UDRE)));			// 버퍼가 빌 때를 기다림
+ 5a2:	5d 9b       	sbis	0x0b, 5	; 11
+ 5a4:	fe cf       	rjmp	.-4      	; 0x5a2 <main+0x1f6>
+  	UDR0 = ch;								// 버퍼에 문자를 쓴다
+ 5a6:	8c b9       	out	0x0c, r24	; 12
+		        HexToDec( Servo_Pos_CMD,10);   // 서보 위치(명령) Servo_Pos_CMD 십진수로 변환
+
+                SerialPutString( "Servo Moror Position = " );   //  메시지 전송 
+
+                SerialPutChar( NumToAsc(cnumber[2]));           //  변수 Servo_Pos_CMD 값 전송
+                SerialPutChar( NumToAsc(cnumber[1]));            
+ 5a8:	80 91 71 01 	lds	r24, 0x0171
+
+} 
+
+char NumToAsc( unsigned char Num )
+{
+	if( Num <10 ) Num += 0x30; 
+ 5ac:	8a 30       	cpi	r24, 0x0A	; 10
+ 5ae:	10 f4       	brcc	.+4      	; 0x5b4 <main+0x208>
+ 5b0:	80 5d       	subi	r24, 0xD0	; 208
+ 5b2:	01 c0       	rjmp	.+2      	; 0x5b6 <main+0x20a>
+	else          Num += 0x37; 
+ 5b4:	89 5c       	subi	r24, 0xC9	; 201
+// 한 문자를 송신한다.
+//======================================
+
+void SerialPutChar(char ch)
+{
+	while(!(UCSR0A & (1<<UDRE)));			// 버퍼가 빌 때를 기다림
+ 5b6:	5d 9b       	sbis	0x0b, 5	; 11
+ 5b8:	fe cf       	rjmp	.-4      	; 0x5b6 <main+0x20a>
+  	UDR0 = ch;								// 버퍼에 문자를 쓴다
+ 5ba:	8c b9       	out	0x0c, r24	; 12
+
+                SerialPutString( "Servo Moror Position = " );   //  메시지 전송 
+
+                SerialPutChar( NumToAsc(cnumber[2]));           //  변수 Servo_Pos_CMD 값 전송
+                SerialPutChar( NumToAsc(cnumber[1]));            
+                SerialPutChar( NumToAsc(cnumber[0])); 
+ 5bc:	80 91 70 01 	lds	r24, 0x0170
+
+} 
+
+char NumToAsc( unsigned char Num )
+{
+	if( Num <10 ) Num += 0x30; 
+ 5c0:	8a 30       	cpi	r24, 0x0A	; 10
+ 5c2:	10 f4       	brcc	.+4      	; 0x5c8 <main+0x21c>
+ 5c4:	80 5d       	subi	r24, 0xD0	; 208
+ 5c6:	01 c0       	rjmp	.+2      	; 0x5ca <main+0x21e>
+	else          Num += 0x37; 
+ 5c8:	89 5c       	subi	r24, 0xC9	; 201
+// 한 문자를 송신한다.
+//======================================
+
+void SerialPutChar(char ch)
+{
+	while(!(UCSR0A & (1<<UDRE)));			// 버퍼가 빌 때를 기다림
+ 5ca:	5d 9b       	sbis	0x0b, 5	; 11
+ 5cc:	fe cf       	rjmp	.-4      	; 0x5ca <main+0x21e>
+  	UDR0 = ch;								// 버퍼에 문자를 쓴다
+ 5ce:	8c b9       	out	0x0c, r24	; 12
+
+                SerialPutChar( NumToAsc(cnumber[2]));           //  변수 Servo_Pos_CMD 값 전송
+                SerialPutChar( NumToAsc(cnumber[1]));            
+                SerialPutChar( NumToAsc(cnumber[0])); 
+
+                SerialPutString( "deg" );                       //  메시지 전송
+ 5d0:	84 e3       	ldi	r24, 0x34	; 52
+ 5d2:	91 e0       	ldi	r25, 0x01	; 1
+ 5d4:	0e 94 3f 01 	call	0x27e	; 0x27e <SerialPutString>
+// 한 문자를 송신한다.
+//======================================
+
+void SerialPutChar(char ch)
+{
+	while(!(UCSR0A & (1<<UDRE)));			// 버퍼가 빌 때를 기다림
+ 5d8:	5d 9b       	sbis	0x0b, 5	; 11
+ 5da:	fe cf       	rjmp	.-4      	; 0x5d8 <main+0x22c>
+  	UDR0 = ch;								// 버퍼에 문자를 쓴다
+ 5dc:	1c b9       	out	0x0c, r17	; 12
+ 5de:	1e c0       	rjmp	.+60     	; 0x61c <main+0x270>
+                SerialPutString( "deg" );                       //  메시지 전송
+                SerialPutChar('\n');                            // 휴대폰으로 데이터 전송시 Line Feed('\n')를 항상 끝에 전송해야함
+
+			} 
+
+			else if( rdata != 0xFF)    //  명령 오류 이면
+ 5e0:	80 91 75 01 	lds	r24, 0x0175
+ 5e4:	8f 3f       	cpi	r24, 0xFF	; 255
+ 5e6:	d1 f0       	breq	.+52     	; 0x61c <main+0x270>
+			{
+
+                SerialPutString( "Command Error!!  Try again.\n" ); //  명령 오류 메시지 전송
+ 5e8:	88 e3       	ldi	r24, 0x38	; 56
+ 5ea:	91 e0       	ldi	r25, 0x01	; 1
+ 5ec:	0e 94 3f 01 	call	0x27e	; 0x27e <SerialPutString>
+
+			    LcdCommand( ALLCLR ) ;    // LCD Claear
+ 5f0:	81 e0       	ldi	r24, 0x01	; 1
+ 5f2:	0e 94 a0 00 	call	0x140	; 0x140 <LcdCommand>
+
+			    LcdMove(0, 0 );           // LCD에 오류메시지 디스플레이
+ 5f6:	80 e0       	ldi	r24, 0x00	; 0
+ 5f8:	60 e0       	ldi	r22, 0x00	; 0
+ 5fa:	0e 94 d9 00 	call	0x1b2	; 0x1b2 <LcdMove>
+		        LcdPuts("Cmd Error!!"); 
+ 5fe:	85 e5       	ldi	r24, 0x55	; 85
+ 600:	91 e0       	ldi	r25, 0x01	; 1
+ 602:	0e 94 83 00 	call	0x106	; 0x106 <LcdPuts>
+			    LcdMove(1, 0 );
+ 606:	81 e0       	ldi	r24, 0x01	; 1
+ 608:	60 e0       	ldi	r22, 0x00	; 0
+ 60a:	0e 94 d9 00 	call	0x1b2	; 0x1b2 <LcdMove>
+		        LcdPuts("Try Again."); 
+ 60e:	81 e6       	ldi	r24, 0x61	; 97
+ 610:	91 e0       	ldi	r25, 0x01	; 1
+ 612:	0e 94 83 00 	call	0x106	; 0x106 <LcdPuts>
+
+				Command_Error_Flag = 1;  
+ 616:	81 e0       	ldi	r24, 0x01	; 1
+ 618:	80 93 7a 01 	sts	0x017A, r24
+
+			}
+
+
+		    rdata = 0xFF;
+ 61c:	00 93 75 01 	sts	0x0175, r16
+            new_recv_flag = 0;      // 새 문자(명령) 수신 플래그 Reset
+ 620:	10 92 77 01 	sts	0x0177, r1
+  
+
+		   if( Command_Error_Flag == 0 )                // 명령에 오류가 없으면 
+ 624:	80 91 7a 01 	lds	r24, 0x017A
+ 628:	88 23       	and	r24, r24
+ 62a:	09 f0       	breq	.+2      	; 0x62e <main+0x282>
+ 62c:	0e cf       	rjmp	.-484    	; 0x44a <main+0x9e>
+		   {  
+	           LcdMove(1, 12); 
+ 62e:	81 e0       	ldi	r24, 0x01	; 1
+ 630:	6c e0       	ldi	r22, 0x0C	; 12
+ 632:	0e 94 d9 00 	call	0x1b2	; 0x1b2 <LcdMove>
+               Display_Number_LCD( Servo_Pos_CMD , 3 ); 
+ 636:	80 91 78 01 	lds	r24, 0x0178
+ 63a:	90 91 79 01 	lds	r25, 0x0179
+ 63e:	63 e0       	ldi	r22, 0x03	; 3
+ 640:	0e 94 93 01 	call	0x326	; 0x326 <Display_Number_LCD>
+ 644:	02 cf       	rjmp	.-508    	; 0x44a <main+0x9e>
+
+00000646 <__udivmodhi4>:
+ 646:	aa 1b       	sub	r26, r26
+ 648:	bb 1b       	sub	r27, r27
+ 64a:	51 e1       	ldi	r21, 0x11	; 17
+ 64c:	07 c0       	rjmp	.+14     	; 0x65c <__udivmodhi4_ep>
+
+0000064e <__udivmodhi4_loop>:
+ 64e:	aa 1f       	adc	r26, r26
+ 650:	bb 1f       	adc	r27, r27
+ 652:	a6 17       	cp	r26, r22
+ 654:	b7 07       	cpc	r27, r23
+ 656:	10 f0       	brcs	.+4      	; 0x65c <__udivmodhi4_ep>
+ 658:	a6 1b       	sub	r26, r22
+ 65a:	b7 0b       	sbc	r27, r23
+
+0000065c <__udivmodhi4_ep>:
+ 65c:	88 1f       	adc	r24, r24
+ 65e:	99 1f       	adc	r25, r25
+ 660:	5a 95       	dec	r21
+ 662:	a9 f7       	brne	.-22     	; 0x64e <__udivmodhi4_loop>
+ 664:	80 95       	com	r24
+ 666:	90 95       	com	r25
+ 668:	bc 01       	movw	r22, r24
+ 66a:	cd 01       	movw	r24, r26
+ 66c:	08 95       	ret
+
+0000066e <__divmodhi4>:
+ 66e:	97 fb       	bst	r25, 7
+ 670:	09 2e       	mov	r0, r25
+ 672:	07 26       	eor	r0, r23
+ 674:	0a d0       	rcall	.+20     	; 0x68a <__divmodhi4_neg1>
+ 676:	77 fd       	sbrc	r23, 7
+ 678:	04 d0       	rcall	.+8      	; 0x682 <__divmodhi4_neg2>
+ 67a:	e5 df       	rcall	.-54     	; 0x646 <__udivmodhi4>
+ 67c:	06 d0       	rcall	.+12     	; 0x68a <__divmodhi4_neg1>
+ 67e:	00 20       	and	r0, r0
+ 680:	1a f4       	brpl	.+6      	; 0x688 <__divmodhi4_exit>
+
+00000682 <__divmodhi4_neg2>:
+ 682:	70 95       	com	r23
+ 684:	61 95       	neg	r22
+ 686:	7f 4f       	sbci	r23, 0xFF	; 255
+
+00000688 <__divmodhi4_exit>:
+ 688:	08 95       	ret
+
+0000068a <__divmodhi4_neg1>:
+ 68a:	f6 f7       	brtc	.-4      	; 0x688 <__divmodhi4_exit>
+ 68c:	90 95       	com	r25
+ 68e:	81 95       	neg	r24
+ 690:	9f 4f       	sbci	r25, 0xFF	; 255
+ 692:	08 95       	ret
+
+00000694 <_exit>:
+ 694:	f8 94       	cli
+
+00000696 <__stop_program>:
+ 696:	ff cf       	rjmp	.-2      	; 0x696 <__stop_program>

@@ -108,6 +108,16 @@ void init_serial(void)
     UBRR0H = 0x00;
     UBRR0L = 103;                     //Baud Rate 9600 
 }
+void sendDHT()
+{
+	SerialPutString(i_temp);
+	SerialPutChar('.');
+	SerialPutString(d_temp);
+	SerialPutChar(',');
+	SerialPutString(i_rh);
+	SerialPutChar('.');
+	SerialPutString(d_rh);
+}
 void getDHT()
 {
 
@@ -154,17 +164,7 @@ void getDHT()
 				
 	_delay_ms(10);
 }
-void sendDHT()
-{
-	SerialPutString(i_temp);
-	SerialPutChar('.');
-	SerialPutString(d_temp);
-	SerialPutChar(',');
-	SerialPutString(i_rh);
-	SerialPutChar('.');
-	SerialPutString(d_rh);
-	//SerialPutChar('\n');
-}
+
 void Request()				/* Microcontroller send start pulse/request */
 {
 	DDRD |= (1<<DHT11_PIN);
